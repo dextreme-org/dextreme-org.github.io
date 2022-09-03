@@ -5,30 +5,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta property="og:site_name" content="S2R2: Sim 2 Remote-Real">
-    <meta property="og:title" content="Transferring Dextrous Manipulation from GPU Simulation to a Remote Real-World Trifinger">
+    <meta property="og:site_name" content="DeXtreme">
+    <meta property="og:title" content="Transfer of Agile In-hand Manipulation from Simulation To Reality">
     <meta property="og:description"
-        content="A framework for learning dextrous manipulation in simulation with Desktop-scale compute and transferring to remote real robots.">
-    <meta property="og:url" content="https://s2r2-ig.github.io">
+        content="Learning anthropomorphic manipulation in simulation and transferring to real robots.">
+    <meta property="og:url" content="https://dextreme.org">
     <meta property="og:image" content="teaser.png">
     <meta property="og:image:type" content="image/png">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Remotely Transferring Dextrous Manipulation Learned with Desktop-scale compute">
+    <meta name="twitter:title" content="DeXtreme">
     <meta name="twitter:description"
-        content="A framework for learning dextrous manipulation in simulation with Desktop-scale compute and transferring to remote real robots.">
+        content="Transfer of Agile In-hand Manipulation from Simulation To Reality">
     <meta name="twitter:creator" content="@arthurallshire">
     <!-- <meta name="twitter:url" content="https://diff-cutting-sim.github.io"> -->
-    <meta name="twitter:image:src" content="https://s2r2-ig.github.io/teaser.png">
+    <meta name="twitter:image:src" content="https://dextreme.org/teaser.png">
 
     <meta name="description"
-        content="A framework for learning dextrous manipulation in simulation with Desktop-scale compute and transferring to remote real robots.">
+        content="DeXtreme: Transfer of Agile In-hand Manipulation from Simulation To Reality">
     <meta name="author" content="Arthur Allshire, Mayank Mittal, Viktor Makoviychuk, Denys Makoviichuk, Felix Widmaier, Manuel Wüthrich, Stefan Bauer, Ankur Handa, and Animesh Garg">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
-    <title>Transferring Dexterous Manipulation from GPU Simulation to a Remote Real-World Trifinger</title>
+    <title>DeXtreme: Transfer of Agile In-hand Manipulation from Simulation To Reality</title>
 
     <style>
         figure { display: table; }
@@ -97,7 +97,7 @@
 
 <body>
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-        <a class="navbar-brand" href="index.html#">S2R2: Sim2Remote-Real</a>
+        <a class="navbar-brand" href="index.html#">DeXtreme</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle">
             <span class="navbar-toggler-icon"></span>
@@ -126,9 +126,15 @@
 
     <div class="container">
 
-        <h1>Transferring Dexterous Manipulation from <br />GPU Simulation to a Remote Real-World Trifinger</h1>
+        <!-- <h1>Transferring Dexterous Manipulation from <br />GPU Simulation to a Remote Real-World Trifinger</h1> -->
+        <h1>DeXtreme: Transfer of Agile In-Hand <br />Manipulation from Simulation To Reality</h1>
 
         <div class="row authors">
+            <div class="col">
+                <p>
+                    <a href="https://ankurhanda.github.io/">Ankur Handa</a><sup>1</sup>
+                </p>
+            </div>
             <div class="col">
                 <p>
                     <a href="https://allshire.org">Arthur Allshire</a><sup>1,2</sup>
@@ -136,19 +142,7 @@
             </div>
             <div class="col">
                 <p>
-                    <a href="https://mayankm96.github.io/">Mayank Mittal</a><sup>2,3</sup>
-                </p>
-            </div>
-            <div class="col">
-                <p>
-                    <a href="https://www.linkedin.com/in/varun-lodaya/">Varun Lodaya</a><sup>1</sup>
-                </p>
-            </div>
-        </div>
-        <div class="row authors">
-            <div class="col">
-                <p>
-                    <a href="https://twitter.com/viktor_m81">Viktor Makoviychuk</a><sup>2</sup>
+                    <a href="https://twitter.com/viktor_m81">Viktor Makoviychuk</a><sup>1</sup>
                 </p>
             </div>
             <div class="col">
@@ -156,91 +150,19 @@
                     <a href="https://www.linkedin.com/in/denys-makoviichuk-2219a72b/">Denys Makoviichuk</a><sup>4</sup>
                 </p>
             </div>
-            <div class="col">
-                <p>
-                    <a href="https://www.is.mpg.de/person/felixwidmaier">Felix Widmaier</a><sup>5</sup>
-                </p>
-            </div>
-            <div class="col">
-                <p>
-                    <a href="https://ei.is.mpg.de/~mwuthrich">Manuel Wüthrich</a><sup>5</sup>
-                </p>
-            </div>
         </div>
         <div class="row authors">
             <div class="col">
                 <p>
-                    <a href="https://www.is.mpg.de/~sbauer">Stefan Bauer</a><sup>5</sup>
-                </p>
-            </div>
-            <div class="col">
-                <p>
-                    <a href="https://ankurhanda.github.io/">Ankur Handa</a><sup>2</sup>
-                </p>
-            </div>
-            <div class="col">
-                <p>
-                    <a href="https://animesh.garg.tech">Animesh Garg</a><sup>1,2</sup>
+                    <a href="">Dieter Fox</a><sup>5</sup>
                 </p>
             </div>
         </div>
         <div class="row affiliations">
             <div class="col">
-                <p><sup>1</sup>University of Toronto &amp; Vector Institute  &nbsp;
-                <sup>2</sup>NVIDIA &nbsp;
-                <sup>3</sup>ETH Zurich &nbsp;
-                <sup>4</sup>Snap &nbsp;
-                <sup>5</sup>MPI Tubingen </p>
-            </div>
-        </div>
-    </div>
-
-    <div class="container" id="abstract">
-        <div class="row">
-            <h2>Abstract</h2>
-            <!-- <p class="col-sm-10 fs-5"> -->
-            <p class="col">
-                We present a system for learning a challenging dexterous manipulation task involving moving a cube to an arbitrary 6-DoF pose with only 3-fingers trained with NVIDIA's IsaacGym simulator. We show empirical benefits, both in simulation and sim-to-real transfer, of using keypoints as opposed to position+quaternion representations for the object pose in 6-DoF for policy observations and in reward calculation to train a model-free reinforcement learning agent. By utilizing domain randomization strategies along with the keypoint representation of the pose of the manipulated object, we achieve a high success rate of 83% on a remote Trifinger system maintained by the organizers of the Real Robot Challenge. With the aim of assisting further research in learning in-hand manipulation, we make the codebase of our system, along with trained checkpoints that come with billions of steps of experience available below.
-            </p>
-            <!-- <div class="card col align-self-center border-0">
-                <a href="https://arxiv.org/abs/2105.12244">
-                    <img src="paper-thumbnail.png" class="card-img-top" alt="DiSECt paper" />
-                    <div class="card-body" align="center">
-                        <h5 class="card-title">Paper on ArXiv</h5>
-                    </div>
-                </a>
-            </div> -->
-        </div>
-
-        <div class="row actions">
-            <div class="col"><a href="https://arxiv.org/abs/2108.09779" target="_blank"
-                    class="btn btn-primary ">Paper</a></div>
-            <div class="col"><a href="https://github.com/pairlab/leibnizgym/" class="btn btn-primary col">Code</a></div>
-            <div class="col"><a
-                    href="https://www.pair.toronto.edu/blog/2021/remote-sim2real-trifinger/"
-                    target="_blank" class="btn btn-primary col">Blog post</a></div>
-            <div class="col"><a href="index.html#" data-bs-toggle="modal" data-bs-target="#citationModal"
-                    class="btn btn-primary col">Cite our work</a></div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="citationModal" tabindex="-1" role="dialog" aria-labelledby="citationModalTitle">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="citationModalLongTitle">Citation</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <pre>
-@article{allshire2021transferring,
-    title={Transferring Dexterous Manipulation from GPU Simulation to a Remote Real-World TriFinger},
-    author={Allshire, Arthur and Mittal, Mayank and Lodaya, Varun and Makoviychuk, Viktor and Makoviichuk, Denys and Widmaier, Felix and W{\"u}thrich, Manuel and Bauer, Stefan and Handa, Ankur and Garg, Animesh},
-    journal={arXiv preprint arXiv:2108.09779},
-    year={2021}
-    }}
-                    </pre>
-                </div>
+                <p><sup>1</sup>NVIDIA &nbsp;
+                <sup>2</sup>University of Toronto &amp; Vector Institute  &nbsp;
+                </p>
             </div>
         </div>
     </div>
@@ -274,6 +196,59 @@
             </div>
         </div>
     </div>
+
+    <div class="container" id="abstract">
+        <div class="row actions">
+            <div class="col"><a href="https://arxiv.org/abs/2108.09779" target="_blank"
+                    class="btn btn-primary ">Paper</a></div>
+            <div class="col"><a href="https://github.com/pairlab/leibnizgym/" class="btn btn-primary col">Code</a></div>
+            <div class="col"><a
+                    href="https://www.pair.toronto.edu/blog/2021/remote-sim2real-trifinger/"
+                    target="_blank" class="btn btn-primary col">Blog post</a></div>
+            <div class="col"><a href="index.html#" data-bs-toggle="modal" data-bs-target="#citationModal"
+                    class="btn btn-primary col">Cite our work</a></div>
+        </div>
+
+        <br /> <br />
+
+        <div class="row">
+            <h2>Abstract</h2>
+            <!-- <p class="col-sm-10 fs-5"> -->
+            <p class="col">
+                Recent work has demonstrated the ability of Deep Reinforcement Learning algorithms to learn complex robotic behaviours in simulation, including in the domain of multi-fingered manipulation. However, such models can be challenging to transfer to the real world due to the gap between simulation and reality. In this paper, we present our techniques to train a) a policy that can perform robust dexterous manipulation on a low-cost anthropomorphic robot hand and b) a robust pose estimator suitable for providing real-time reliable information on the state of the object being manipulated. We show trained policies are capable of performing adaptively across a wide range of conditions, in simulation in \textcolor{red}{conditions X and Y}, and in the real world, where we achieve \textcolor{red}{a mean of Z} consecutive success in our best policy. We hope that our work serves a reaffirmation of the possibilities of sim2real transfer in diverse kinds of hardware and simulator setups, in our case with the Allegro Hand and Isaac Gym GPU-based simulation.
+            </p>
+            <!-- <div class="card col align-self-center border-0">
+                <a href="https://arxiv.org/abs/2105.12244">
+                    <img src="paper-thumbnail.png" class="card-img-top" alt="DiSECt paper" />
+                    <div class="card-body" align="center">
+                        <h5 class="card-title">Paper on ArXiv</h5>
+                    </div>
+                </a>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="modal fade" id="citationModal" tabindex="-1" role="dialog" aria-labelledby="citationModalTitle">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="citationModalLongTitle">Citation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <pre>
+@article{dextreme22,
+    title={DeXtreme: Transfer of Agile In-hand Manipulation from Simulation To Reality,
+    author={},
+    journal={arXiv preprint arXiv:2108.09779},
+    year={2022}
+    }}
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="container" id="video">
         <h2>Video</h2>
@@ -315,7 +290,7 @@
                 </video>
             </div>
         </div>
-        
+
         <br />
 
         <div class="row">
@@ -355,7 +330,7 @@
                 </video>
             </div>
         </div>
-        
+
         <br />
 
         <div class="row">
@@ -450,7 +425,6 @@
 
     <div class="container" id="acknowledgements">
         <h2>Acknowledgements</h2>
-        <p class="lead">This work was led by University of Toronto in collaboration with Nvidia, Vector Institute, MPI, ETH and Snap. We would like to thank Vector Institute for computing support, as well as the CIFAR AI Chair for research support to Animesh Garg.</p>
         <p class="lead">Website template from <a href="https://diff-cutting-sim.github.io/">DiSECt</a> paper.</p>
     </div>
 
