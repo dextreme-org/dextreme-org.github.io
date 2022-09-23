@@ -1,436 +1,491 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nerfies: Deformable Neural Radiance Fields</title>
 
-    <meta property="og:site_name" content="DeXtreme">
-    <meta property="og:title" content="Transfer of Agile In-hand Manipulation from Simulation To Reality">
-    <meta property="og:description"
-        content="Learning anthropomorphic manipulation in simulation and transferring to real robots.">
-    <meta property="og:url" content="https://dextreme.org">
-    <meta property="og:image" content="teaser.png">
-    <meta property="og:image:type" content="image/png">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="DeXtreme">
-    <meta name="twitter:description"
-        content="Transfer of Agile In-hand Manipulation from Simulation To Reality">
-    <meta name="twitter:creator" content="@arthurallshire">
-    <!-- <meta name="twitter:url" content="https://diff-cutting-sim.github.io"> -->
-    <meta name="twitter:image:src" content="https://dextreme.org/teaser.png">
+    function gtag() {
+      dataLayer.push(arguments);
+    }
 
-    <meta name="description"
-        content="DeXtreme: Transfer of Agile In-hand Manipulation from Simulation To Reality">
-    <meta name="author" content="Arthur Allshire, Mayank Mittal, Viktor Makoviychuk, Denys Makoviichuk, Felix Widmaier, Manuel Wüthrich, Stefan Bauer, Ankur Handa, and Animesh Garg">
+    gtag('js', new Date());
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
 
-    <title>DeXtreme: Transfer of Agile In-hand Manipulation from Simulation To Reality</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
 
-    <style>
-        figure { display: table; }
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
 
-
-        figcaption { display: table-caption; caption-side: bottom ; }
-
-        div.authors p:first-of-type {
-            font-size: 1.4em;
-        }
-
-        div.authors p {
-            text-align: center;
-        }
-
-        div.affiliations p {
-            text-align: center;
-        }
-
-        h1,
-        h2 {
-            margin: 1em 0;
-            text-align: center;
-        }
-
-        a:link {
-            text-decoration: none;
-        }
-
-        #video {
-            text-align: center;
-        }
-
-        div.container {
-            padding-top: 60px;
-        }
-
-        .navbar {
-            padding: 0.4em 2em;
-        }
-
-        #abstract p {
-            text-align: justify;
-        }
-
-        #results .label {
-            margin-top: 1em;
-            margin-bottom: 0.3em;
-            font-weight: bold;
-        }
-
-        #results h3,
-        #results h5 {
-            margin-top: 2em;
-        }
-
-        .btn {
-            width: 75%;
-        }
-
-        .actions .col {
-            text-align: center;
-        }
-    </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
 </head>
-
 <body>
-    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-        <a class="navbar-brand" href="index.html#">DeXtreme</a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
 
-        <div class="collapse navbar-collapse justify-content-end position-relative" id="navbarToggle">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html#" target="_self">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html#abstract" target="_self">Abstract</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html#video" target="_self">Video</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html#results" target="_self">Results</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html#acknowledgements" target="_self">Acknowledgements</a>
-                </li>
-            </ul>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
         </div>
-    </nav>
-
-    <div class="container">
-
-        <!-- <h1>Transferring Dexterous Manipulation from <br />GPU Simulation to a Remote Real-World Trifinger</h1> -->
-        <h1>DeXtreme: Transfer of Agile In-Hand <br />Manipulation from Simulation To Reality</h1>
-
-        <div class="row authors">
-            <div class="col">
-                <p>
-                    <a href="https://ankurhanda.github.io/">Ankur Handa</a><sup>1</sup>
-                </p>
-            </div>
-            <div class="col">
-                <p>
-                    <a href="https://allshire.org">Arthur Allshire</a><sup>1,2</sup>
-                </p>
-            </div>
-            <div class="col">
-                <p>
-                    <a href="https://twitter.com/viktor_m81">Viktor Makoviychuk</a><sup>1</sup>
-                </p>
-            </div>
-            <div class="col">
-                <p>
-                    <a href="https://www.linkedin.com/in/denys-makoviichuk-2219a72b/">Denys Makoviichuk</a><sup>4</sup>
-                </p>
-            </div>
-        </div>
-        <div class="row authors">
-            <div class="col">
-                <p>
-                    <a href="">Dieter Fox</a><sup>5</sup>
-                </p>
-            </div>
-        </div>
-        <div class="row affiliations">
-            <div class="col">
-                <p><sup>1</sup>NVIDIA &nbsp;
-                <sup>2</sup>University of Toronto &amp; Vector Institute  &nbsp;
-                </p>
-            </div>
-        </div>
+      </div>
     </div>
 
-    <div class="container" id="summary">
-        <div class="row">
-            <div class="col">
-                <video autoplay muted loop class="img-fluid" width="50%" style="display: block; margin: 0 auto;">
-                    <source src="videos/comparison/sim.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="col">
-                <video autoplay muted loop class="img-fluid" width="50%" style="display: block; margin: 0 auto;">
-                    <source src="videos/comparison/real.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
+  </div>
+</nav>
 
-        <div class="row">
-            <div class="col">
-                <p class="lead" style="text-align:center">
-                    Training takes place entirely in simulation, using desktop-scale compute.
-                </p>
-            </div>
-            <div class="col">
-                <p class="lead" style="text-align:center">
-                    We then transfer to the real robot, achieving an 83% success rate on 6 DoF (position + orientation) reposing.
-                </p>
-            </div>
-        </div>
-    </div>
 
-    <div class="container" id="abstract">
-        <div class="row actions">
-            <div class="col"><a href="https://arxiv.org/abs/2108.09779" target="_blank"
-                    class="btn btn-primary ">Paper</a></div>
-            <div class="col"><a href="https://github.com/pairlab/leibnizgym/" class="btn btn-primary col">Code</a></div>
-            <div class="col"><a
-                    href="https://www.pair.toronto.edu/blog/2021/remote-sim2real-trifinger/"
-                    target="_blank" class="btn btn-primary col">Blog post</a></div>
-            <div class="col"><a href="index.html#" data-bs-toggle="modal" data-bs-target="#citationModal"
-                    class="btn btn-primary col">Cite our work</a></div>
-        </div>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">DeXtreme: Transfer of Agile In-Hand Manipulation from Simulation to Reality</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://ankurhanda.github.io/">Ankur Handa</a><sup>1</sup>,</span>
+              <!-- <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span> -->
+            <span class="author-block">
+              <a href="https://allshire.org">Arthur Allshire</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://twitter.com/viktor_m81?lang=en">Viktor Makoviychuk</a><sup>1</sup>,</span>
+            </span>
+            <span class="author-block">
+              <a href="https://alex-petrenko.github.io/">Aleksei Petrenko</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Ritvik Singh</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Jason Liu</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
+            </span>
+          </div>
 
-        <br /> <br />
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Washington,</span>
+            <span class="author-block"><sup>2</sup>Google Research</span>
+          </div>
 
-        <div class="row">
-            <h2>Abstract</h2>
-            <!-- <p class="col-sm-10 fs-5"> -->
-            <p class="col">
-                Recent work has demonstrated the ability of Deep Reinforcement Learning algorithms to learn complex robotic behaviours in simulation, including in the domain of multi-fingered manipulation. However, such models can be challenging to transfer to the real world due to the gap between simulation and reality. In this paper, we present our techniques to train a) a policy that can perform robust dexterous manipulation on a low-cost anthropomorphic robot hand and b) a robust pose estimator suitable for providing real-time reliable information on the state of the object being manipulated. We show trained policies are capable of performing adaptively across a wide range of conditions, in simulation in \textcolor{red}{conditions X and Y}, and in the real world, where we achieve \textcolor{red}{a mean of Z} consecutive success in our best policy. We hope that our work serves a reaffirmation of the possibilities of sim2real transfer in diverse kinds of hardware and simulator setups, in our case with the Allegro Hand and Isaac Gym GPU-based simulation.
-            </p>
-            <!-- <div class="card col align-self-center border-0">
-                <a href="https://arxiv.org/abs/2105.12244">
-                    <img src="paper-thumbnail.png" class="card-img-top" alt="DiSECt paper" />
-                    <div class="card-body" align="center">
-                        <h5 class="card-title">Paper on ArXiv</h5>
-                    </div>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
                 </a>
-            </div> -->
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/google/nerfies"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+            </div>
+
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+</section>
 
-    <div class="modal fade" id="citationModal" tabindex="-1" role="dialog" aria-labelledby="citationModalTitle">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="citationModalLongTitle">Citation</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <pre>
-@article{dextreme22,
-    title={DeXtreme: Transfer of Agile In-hand Manipulation from Simulation To Reality,
-    author={},
-    journal={arXiv preprint arXiv:2108.09779},
-    year={2022}
-    }}
-                    </pre>
-                </div>
-            </div>
-        </div>
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/teaser.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
+        free-viewpoint
+        portraits.
+      </h2>
     </div>
+  </div>
+</section>
 
 
-    <div class="container" id="video">
-        <h2>Video</h2>
-        <div class="row justify-content-md-center">
-            <div class="ratio ratio-16x9 w-75">
-                <iframe src="https://www.youtube.com/embed/nXM5_mwUFOI" title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-            </div>
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
         </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
 
-    <div class="container" id="results">
-        <h2>Results</h2>
 
-        <h3>Representative sample of real robot videos</h3>
-
-        <p>(10 FPS, real-time)</p>
-
-        <br />
-
-        <div class="row">
-            <div class="col">
-                <video autoplay muted loop class="img-fluid" width="80%" style="display: block; margin: 0 auto; border: 5px solid LightSkyBlue;">
-                    <source src="videos/real/success2.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="col">
-                <video autoplay muted loop class="img-fluid" width="80%" style="display: block; margin: 0 auto; border: 5px solid LightSkyBlue;">
-                    <source src="videos/real/success3.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="col">
-                <video autoplay muted loop class="img-fluid" width="80%" style="display: block; margin: 0 auto; border: 5px solid LightSkyBlue;">
-                    <source src="videos/real/success4.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We present the first method capable of photorealistically reconstructing a non-rigidly
+            deforming scene using photos/videos captured casually from mobile phones.
+          </p>
+          <p>
+            Our approach augments neural radiance fields
+            (NeRF) by optimizing an
+            additional continuous volumetric deformation field that warps each observed point into a
+            canonical 5D NeRF.
+            We observe that these NeRF-like deformation fields are prone to local minima, and
+            propose a coarse-to-fine optimization method for coordinate-based models that allows for
+            more robust optimization.
+            By adapting principles from geometry processing and physical simulation to NeRF-like
+            models, we propose an elastic regularization of the deformation field that further
+            improves robustness.
+          </p>
+          <p>
+            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
+            photos/videos into deformable NeRF
+            models that allow for photorealistic renderings of the subject from arbitrary
+            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
+            using a
+            rig with two mobile phones that take time-synchronized photos, yielding train/validation
+            images of the same pose at different viewpoints. We show that our method faithfully
+            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
+            fidelity.
+          </p>
         </div>
-
-        <br />
-
-        <div class="row">
-            <div class="col">
-                <video autoplay muted loop class="img-fluid" width="80%" style="display: block; margin: 0 auto; border: 5px solid LightSkyBlue;">
-                    <source src="videos/real/success0.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="col">
-                <video autoplay muted loop class="img-fluid" width="80%" style="display: block; margin: 0 auto; border: 5px solid LightSkyBlue;">
-                    <source src="videos/real/success1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="col">
-                <video autoplay muted loop class="img-fluid" width="80%" style="display: block; margin: 0 auto; border: 5px solid maroon;">
-                    <source src="videos/real/fail0.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
-
-        <h3>Single robust policy, many objects through finetuning</h3>
-
-        <div class="row">
-            <div class="col">
-                <video autoplay muted loop class="img-fluid" width="80%" style="display: block; margin: 0 auto;">
-                    <source src="videos/egad_f/0.m4v" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="col">
-                <video autoplay muted loop class="img-fluid" width="80%" style="display: block; margin: 0 auto;">
-                    <source src="videos/egad_f/1.m4v" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
-
-        <br />
-
-        <div class="row">
-            <div class="col">
-                <video autoplay muted loop class="img-fluid" width="80%" style="display: block; margin: 0 auto;">
-                    <source src="videos/egad_f/2.m4v" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="col">
-                <video autoplay muted loop class="img-fluid" width="80%" style="display: block; margin: 0 auto;">
-                    <source src="videos/egad_f/3.m4v" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
-
-        <br />
-
-        <div class="row">
-            <div class="col">
-                <video autoplay muted loop class="img-fluid" width="80%" style="display: block; margin: 0 auto;">
-                    <source src="videos/egad_f/4.m4v" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="col">
-                <video autoplay muted loop class="img-fluid" width="80%" style="display: block; margin: 0 auto;">
-                    <source src="videos/egad_f/5.m4v" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
-
-        <h3>Zero-shot transfer</h3>
-
-        <h4>... to other scales</h4>
-
-        <div class="row" style="text-align:center">
-            <div class="col">
-                <video autoplay muted loop class="img-fluid" width="80%" style="display: block; margin: 0 auto;">
-                    <source src="videos/0.6x_trim.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <p>0.6x scale</p>
-            </div>
-            <div class="col">
-                <video autoplay muted loop class="img-fluid" width="80%" style="display: block; margin: 0 auto;">
-                    <source src="videos/1.2x_trim.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <p>1.2x scale</p>
-            </div>
-        </div>
-
-        <h4>... to other objects</h4>
-
-        <div class="row" style="text-align:center">
-            <div class="col">
-                <video autoplay muted loop class="img-fluid" width="80%" style="display: block; margin: 0 auto;">
-                    <source src="videos/ball_trim.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <p>Sphere</p>
-            </div>
-            <div class="col">
-                <video autoplay muted loop class="img-fluid" width="80%" style="display: block; margin: 0 auto;">
-                    <source src="videos/cube_skinny_trim.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <p>Arbitrary cuboid</p>
-            </div>
-        </div>
-
-        <h3>Sim2Real across the Pond</h3> <br />
-
-        <div class="row" style="text-align:center">
-            <div class="col">
-                <img class="img-fluid" src="system_teaser.jpg" style="display: block; margin: 0 auto;"/>
-                <p>Our system trains on Desktop level compute in Canada, on 16,384 environments in parallel on a single NVIDIA Tesla V100 GPU. Inference is then conducted remotely on a TriFinger robot located across the Atlantic in Germany using the uploaded actor weights.</p>
-            </div>
-            <div class="col">
-                <img class="img-fluid" src="trifinger_farm.png" style="width: 75%; display: block; margin: 0 auto;"/>
-                <p>A picture of the robot farm used. The policy may be run of any one of a number of different Trifinger robots, meaning it needs to be robust to a range of parameters. The infrastructure on which we perform Sim2Real transfer is provided courtesy of the organisers of the <a href="https://real-robot-challenge.com/"></a>Real Robot Challenge</a>.</p>
-            </div>
-        </div>
-
-        <br />
-
-
-
-
-    <div class="container" id="acknowledgements">
-        <h2>Acknowledgements</h2>
-        <p class="lead">Website template from <a href="https://diff-cutting-sim.github.io/">DiSECt</a> paper.</p>
+      </div>
     </div>
+    <!--/ Abstract. -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-        crossorigin="anonymous"></script>
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Visual Effects</h2>
+          <p>
+            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
+            would be impossible without nerfies since it would require going through a wall.
+          </p>
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/dollyzoom-stacked.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-3">Matting</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              As a byproduct of our method, we can also solve the matting problem by ignoring
+              samples that fall outside of a bounding box during rendering.
+            </p>
+            <video id="matting-video" controls playsinline height="100%">
+              <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/matting.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Matting. -->
+
+    <!-- Animation. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Animation</h2>
+
+        <!-- Interpolating. -->
+        <h3 class="title is-4">Interpolating states</h3>
+        <div class="content has-text-justified">
+          <p>
+            We can also animate the scene by interpolating the deformation latent codes of two input
+            frames. Use the slider here to linearly interpolate between the left frame and the right
+            frame.
+          </p>
+        </div>
+        <div class="columns is-vcentered interpolation-panel">
+          <div class="column is-3 has-text-centered">
+            <img src="https://homes.cs.washington.edu/~kpar/nerfies/images/interpolate_start.jpg"
+                 class="interpolation-image"
+                 alt="Interpolate start reference image."/>
+            <p>Start Frame</p>
+          </div>
+          <div class="column interpolation-video-column">
+            <div id="interpolation-image-wrapper">
+              Loading...
+            </div>
+            <input class="slider is-fullwidth is-large is-info"
+                   id="interpolation-slider"
+                   step="1" min="0" max="100" value="0" type="range">
+          </div>
+          <div class="column is-3 has-text-centered">
+            <img src="https://homes.cs.washington.edu/~kpar/nerfies/images/interpolate_end.jpg"
+                 class="interpolation-image"
+                 alt="Interpolation end reference image."/>
+            <p class="is-bold">End Frame</p>
+          </div>
+        </div>
+        <br/>
+        <!--/ Interpolating. -->
+
+        <!-- Re-rendering. -->
+        <h3 class="title is-4">Re-rendering the input video</h3>
+        <div class="content has-text-justified">
+          <p>
+            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
+            viewpoint such as a stabilized camera by playing back the training deformations.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <video id="replay-video"
+                 controls
+                 muted
+                 preload
+                 playsinline
+                 width="75%">
+            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/replay.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <!--/ Re-rendering. -->
+
+      </div>
+    </div>
+    <!--/ Animation. -->
+
+
+    <!-- Concurrent Work. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            There's a lot of excellent work that was introduced around the same time as ours.
+          </p>
+          <p>
+            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
+          </p>
+          <p>
+            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
+            both use deformation fields to model non-rigid scenes.
+          </p>
+          <p>
+            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
+          </p>
+          <p>
+            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Concurrent Work. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://homes.cs.washington.edu/~kpar/nerfies/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
 </body>
-
 </html>
