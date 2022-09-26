@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="DeXtreme is a system to perform highly dextrous manipulation with robotic hands using scaled simulation data.">
+    content="DeXtreme is a system to perform highly dextrous manipulation with robotic hands using scaled simulation data.">
   <meta name="keywords" content="Dexterous, Robotic, Manipulation, Reinforcement Learning">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DeXtreme: Transfer of Agile In-Hand Manipulation from Simulation to Reality</title>
@@ -22,15 +23,13 @@
     gtag('config', 'G-PYVRSFMDRL');
   </script>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
 
@@ -40,118 +39,120 @@
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
 </head>
+
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://developer.nvidia.com/isaac-gym">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
       </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="https://developer.nvidia.com/isaac-gym">
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
         </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://sites.google.com/view/dexpbt">
-            DexPBT
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More Research
           </a>
-          <a class="navbar-item" href="https://s2r2-ig.github.io/">
-            Learning Dexterity for Trifinger
-          </a>
-          <a class="navbar-item" href="https://arxiv.org/abs/2108.10470">
-            Isaac Gym
-          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://sites.google.com/view/dexpbt">
+              DexPBT
+            </a>
+            <a class="navbar-item" href="https://s2r2-ig.github.io/">
+              Learning Dexterity for Trifinger
+            </a>
+            <a class="navbar-item" href="https://arxiv.org/abs/2108.10470">
+              Isaac Gym
+            </a>
+          </div>
         </div>
       </div>
+
     </div>
-
-  </div>
-</nav>
+  </nav>
 
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">DeXtreme: Transfer of Agile In-Hand Manipulation from Simulation to Reality</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://ankurhanda.github.io/">Ankur Handa</a>,
-            </span>
-            <span class="author-block">
-              <a href="https://allshire.org">Arthur Allshire</a>,
-            </span>
-            <span class="author-block">
-              <a href="https://twitter.com/viktor_m81?lang=en">Viktor Makoviychuk</a>,
-            </span>
-            <span class="author-block">
-              <a href="https://alex-petrenko.github.io/">Aleksei Petrenko</a>,
-            </span>
-
-            <br />
-
-            <span class="author-block">
-              <a href="">Ritvik Singh</a>,
-            </span>
-            <span class="author-block">
-              <a href="">Jason Liu</a>,
-            </span>
-            <span class="author-block">
-              <a href="">Denys Makoviichuk</a>,
-            </span>
-            <span class="author-block">
-              <a href="">Karl Van Wyk</a>,
-            </span>
-            <span class="author-block">
-              <a href="">Alexander Zhurkevich</a>,
-            </span>
-            <br />
-            <span class="author-block">
-              <a href="">Balakumar Sundaralingam</a>,
-            </span>
-            <span class="author-block">
-              <a href="">Yashraj Narang</a>,
-            </span>
-            <span class="author-block">
-              <a href="">Jean-Francois Lafleche</a>,
-            </span>
-            <span class="author-block">
-              <a href="">Dieter Fox</a>,
-            </span>
-            <span class="author-block">
-              <a href="">Gavriel State</a>
-            </span>
-          </div>
-
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><a href="https://research.nvidia.com/research-area/robotics"><b><img src="static/images/nvidia.svg" style="height:40px"></b></a></span>
-          </div>
-
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
           <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href=""
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper (coming soon!)</span>
-                </a>
+            <h1 class="title is-1 publication-title">DeXtreme: Transfer of Agile In-Hand Manipulation from Simulation to
+              Reality</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://ankurhanda.github.io/">Ankur Handa</a>,
               </span>
-              <!-- <span class="link-block">
+              <span class="author-block">
+                <a href="https://allshire.org">Arthur Allshire</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://twitter.com/viktor_m81?lang=en">Viktor Makoviychuk</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://alex-petrenko.github.io/">Aleksei Petrenko</a>,
+              </span>
+
+              <br />
+
+              <span class="author-block">
+                <a href="">Ritvik Singh</a>,
+              </span>
+              <span class="author-block">
+                <a href="">Jason Liu</a>,
+              </span>
+              <span class="author-block">
+                <a href="">Denys Makoviichuk</a>,
+              </span>
+              <span class="author-block">
+                <a href="">Karl Van Wyk</a>,
+              </span>
+              <span class="author-block">
+                <a href="">Alexander Zhurkevich</a>,
+              </span>
+              <br />
+              <span class="author-block">
+                <a href="">Balakumar Sundaralingam</a>,
+              </span>
+              <span class="author-block">
+                <a href="">Yashraj Narang</a>,
+              </span>
+              <span class="author-block">
+                <a href="">Jean-Francois Lafleche</a>,
+              </span>
+              <span class="author-block">
+                <a href="">Dieter Fox</a>,
+              </span>
+              <span class="author-block">
+                <a href="">Gavriel State</a>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><a href="https://research.nvidia.com/research-area/robotics"><b><img
+                      src="static/images/nvidia.svg" style="height:40px"></b></a></span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper (coming soon!)</span>
+                  </a>
+                </span>
+                <!-- <span class="link-block">
                 <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -160,28 +161,27 @@
                   <span>arXiv</span>
                 </a>
               </span> -->
-              <!-- Video Link. -->
-              <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=DDsRWCFqmI0"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
+                <!-- Video Link. -->
+                <span class="link-block">
+                  <a href="https://www.youtube.com/watch?v=DDsRWCFqmI0"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
                       <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href=""
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code (coming soon!)</span>
+                    </span>
+                    <span>Video</span>
                   </a>
-              </span>
-              <!-- Dataset Link. -->
-              <!-- <span class="link-block">
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code (coming soon!)</span>
+                  </a>
+                </span>
+                <!-- Dataset Link. -->
+                <!-- <span class="link-block">
                 <a href="https://github.com/google/nerfies/releases/tag/0.1"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -189,31 +189,31 @@
                   </span>
                   <span>Data</span>
                   </a> -->
-            </div>
+              </div>
 
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline width="100%">
-        <source src="static/images/teaser.mp4"
-                type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">DeXtreme</span> achives human-like in-hand manipulation while training entirely in simulation.
-      </h2>
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline width="100%">
+          <source src="static/images/teaser.mp4" type="video/mp4">
+        </video>
+        <h2 class="subtitle has-text-centered">
+          <span class="dnerf">DeXtreme</span> achives human-like in-hand manipulation while training entirely in
+          simulation.
+        </h2>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
-<!-- <section class="hero is-light is-small">
+  <!-- <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
@@ -271,30 +271,35 @@
 </section> -->
 
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          
-          <p>We present our techniques to train a) a policy that can perform robust dexterous manipulation on an
-            anthropomorphic robot hand and b) a robust pose estimator suitable
-            for providing reliable real-time information on the state of the object being manipulated.</p>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
 
-          <p><span class="dnerf">DeXtreme</span> policies are trained to adapt to a wide range of conditions in simulation.
-            Consequently, our vision-based policies significantly outperform the best vision policies
-            in the literature on the same reorientation task and are competitive with policies that
-            are given privileged state information via motion capture systems.</p>
+            <p>We present our techniques to train a) a policy that can perform robust dexterous manipulation on an
+              anthropomorphic robot hand and b) a robust pose estimator suitable
+              for providing reliable real-time information on the state of the object being manipulated.</p>
 
-          <p>Recent work has demonstrated the ability of deep reinforcement learning (RL) algorithms
-            to learn complex robotic behaviours in simulation, including in the domain of multi-fingered manipulation.
-            However, such models can be challenging to transfer to the real world due to the gap between simulation and reality.</p>
+            <p><span class="dnerf">DeXtreme</span> policies are trained to adapt to a wide range of conditions in
+              simulation.
+              Consequently, our vision-based policies significantly outperform the best vision policies
+              in the literature on the same reorientation task and are competitive with policies that
+              are given privileged state information via motion capture systems.</p>
 
-          <p>Our work reaffirms the possibilities of sim-to-real transfer for dexterous manipulation in diverse kinds of hardware and simulator setups, and in our case, with the Allegro Hand and Isaac Gym GPU-based simulation.
-            Furthermore, it opens up possibilities for researchers to achieve such results with commonly-available, affordable robot hands and cameras.</p>
-          <!-- <p>
+            <p>Recent work has demonstrated the ability of deep reinforcement learning (RL) algorithms
+              to learn complex robotic behaviours in simulation, including in the domain of multi-fingered manipulation.
+              However, such models can be challenging to transfer to the real world due to the gap between simulation
+              and reality.</p>
+
+            <p>Our work reaffirms the possibilities of sim-to-real transfer for dexterous manipulation in diverse kinds
+              of hardware and simulator setups, and in our case, with the Allegro Hand and Isaac Gym GPU-based
+              simulation.
+              Furthermore, it opens up possibilities for researchers to achieve such results with commonly-available,
+              affordable robot hands and cameras.</p>
+            <!-- <p>
             We present the first method capable of photorealistically reconstructing a non-rigidly
             deforming scene using photos/videos captured casually from mobile phones.
           </p>
@@ -321,73 +326,85 @@
             reconstructs non-rigidly deforming scenes and reproduces unseen views with high
             fidelity.
           </p> -->
+          </div>
         </div>
       </div>
-    </div>
-    <!--/ Abstract. -->
+      <!--/ Abstract. -->
 
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <!-- <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Video</h2>
+          <div class="publication-video">
+            <!-- <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
                   frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
-          <video id="teaser" controls width="100%">
-            <!-- <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/teaser.mp4"
+            <video id="teaser" controls width="100%">
+              <!-- <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/teaser.mp4"
                     type="video/mp4"> -->
-            <source src="static/images/ICRA23_suppl.mp4"
-                    type="video/mp4">
-          </video>
+              <source src="static/images/ICRA23_suppl.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <!--/ Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Video</h2>
+          <div class="publication-video">
+            <!-- <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+            <video id="teaser" controls width="100%">
+              <!-- <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/teaser.mp4"
+                    type="video/mp4"> -->
+              <source src="static/images/85CS_NoHold_2.mp4" type="video/mp4">
+            </video>
+          </div>
         </div>
       </div>
     </div>
-    <!--/ Paper video. -->
-  </div>
-</section>
+  </section>
 
 
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{nvidia2022dextreme,
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{nvidia2022dextreme,
   author    = {Handa, Ankur and Allshire, Arthur and Makoviychuk, Viktor and Petrenko, Aleksei and Singh, Ritvik and Liu, Jingzhou and Makoviichuk, Denys and Van Wyk, Karl and Zhurkevich, Alexander and Sundaralingam, Balakumar and Narang, Yashraj and Lafleche, Jean-Francois and Fox, Dieter and State, Gavriel},
   title     = {DeXtreme: Transfer of Agile In-Hand Manipulation from Simulation to Reality},
   journal   = {arXiv},
   year      = {2022},
 }</code></pre>
-  </div>
-</section>
-
-
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link"
-         href="https://arxiv.org">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/arthurallshire" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
     </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            Template from <a
-              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
-          </p>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="https://arxiv.org">
+          <i class="fas fa-file-pdf"></i>
+        </a>
+        <a class="icon-link" href="https://github.com/arthurallshire" class="external-link" disabled>
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              Template from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
 </body>
+
 </html>
