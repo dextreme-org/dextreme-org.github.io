@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="Geometric Fabrics is a safe, guiding layer over which RL policies can be trained in simulation to produce very high-performing dexterous manipulation policies.">
+  <meta name="keywords" content="Dexterous, Robotic, Manipulation, Reinforcement Learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Geometric Fabrics: a Safe Guiding Medium for Policy Learning</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+  <link rel="icon" href="./static/images/favicon_cube.ico">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="https://developer.nvidia.com/isaac-gym">
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
+        </a>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More Research
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://sites.google.com/view/dexpbt">
+              DexPBT
+            </a>
+            <a class="navbar-item" href="https://s2r2-ig.github.io/">
+              Learning Dexterity for Trifinger
+            </a>
+            <a class="navbar-item" href="https://arxiv.org/abs/2108.10470">
+              Isaac Gym
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <section class="hero">
+    <div class="hero-body" style="padding-top: 1em">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Geometric Fabrics: a Safe Guiding Medium for Policy Learning</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://dextreme.org/fgp.html">Karl Van Wyk</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://ankurhanda.github.io/">Ankur Handa</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://twitter.com/viktor_m81?lang=en">Viktor Makoviychuk</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://www.guoyijie.me/">Yijie Guo</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://allshire.org">Arthur Allshire</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://dextreme.org/fgp.html">Nathan Ratliff</a>
+              </span>
+
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><a href="https://research.nvidia.com/research-area/robotics"><b><img
+                      src="static/images/nvidia.svg" style="height:40px"></b></a></span>
+            </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline width="100%">
+          <source src="static/images/fgp_short.mp4" type="video/mp4">
+        </video>
+	<!--<h2 class="subtitle has-text-centered">-->
+        <h2 class="subtitle" align="justify">
+          Fabrics-Guided Policies (FGP) are trained via large-scale reinforcement learning in simulation over a geometric fabric layer. The geometric fabric imbues certain behaviors like establishing fingertip contact, finger curling, and upholds hardware constraints like joint position, acceleration, and jerk limits. These behaviors guide RL and simplify reward engineering. The framework is applied to in-hand cube reorientation by a highly actuated hand and achieves breakthrough policy performance in the real world. 
+        </h2>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+
+            <p>
+Robotics policies are always subjected to complex,
+second order dynamics that entangle their actions with resulting states. In reinforcement learning (RL) contexts, policies have the burden of deciphering these complicated interactions over massive amounts of experience and complex reward functions to learn how to accomplish tasks. Moreover, policies typically issue actions directly to controllers like Operational Space Control (OSC) or joint PD control, which induces straightline motion towards these action targets in task or joint space. However, straightline motion in these spaces for the most part do not capture the rich, nonlinear behavior our robots need to exhibit, shifting the burden of discovering these behaviors more completely to the agent. Unlike these simpler controllers, geometric fabrics capture a much richer and desirable set of behaviors via artificial, second order dynamics grounded in nonlinear geometry. These artificial dynamics shift the uncontrolled dynamics of a robot via an appropriate control law to form \textit{behavioral dynamics}. Behavioral dynamics unlock a new action space and safe, guiding behavior over which RL policies are trained. Behavioral dynamics enable bang-bang-like RL policy actions that are still safe for real robots, simplify reward engineering, and help sequence real-world, high-performance policies. We describe the framework more generally and create a specific instantiation for the problem of dexterous, in-hand reorientation of a cube by a highly actuated robot hand.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+      
+
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" id="overview_video">FGP &beta; = 40 (best setting)</h2>
+          <div class="columns is-centered has-text-centered">
+            <h2>Video is 1x real-time</b>.
+            </h2>
+          </div>
+          <div class="publication-video">
+            <!-- <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+            <video id="teaser" controls width="100%">
+              <!-- <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/teaser.mp4"
+                    type="video/mp4"> -->
+              <source src="static/images/fgp.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      
+      <!--/ Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" id="overview_video">FGP &beta; = 40, Robustness to Disturbances</h2>
+          <div class="columns is-centered has-text-centered">
+            <h2>Video is 1x real-time</b>.
+            </h2>
+          </div>
+          <div class="publication-video">
+            <video id="fgp" controls width="100%">
+              <source src="static/images/cube_adversary.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" id="overview_video">FGP &beta; = 2.5</h2>
+          <div class="columns is-centered has-text-centered">
+            <h2>Video is 1x real-time</b>.
+            </h2>
+          </div>
+          <div class="publication-video">
+            <!-- <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+            <video id="teaser" controls width="100%">
+              <!-- <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/teaser.mp4"
+                    type="video/mp4"> -->
+              <source src="static/images/fgp_beta_2_5.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" id="overview_video">FGP &beta; = 10</h2>
+          <div class="columns is-centered has-text-centered">
+            <h2>Video is 1x real-time</b>.
+            </h2>
+          </div>
+          <div class="publication-video">
+            <!-- <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+            <video id="teaser" controls width="100%">
+              <!-- <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/teaser.mp4"
+                    type="video/mp4"> -->
+              <source src="static/images/fgp_beta_10.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" id="overview_video">FGP &beta; = 20</h2>
+          <div class="columns is-centered has-text-centered">
+            <h2>Video is 1x real-time</b>.
+            </h2>
+          </div>
+          <div class="publication-video">
+            <!-- <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+            <video id="teaser" controls width="100%">
+              <!-- <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/teaser.mp4"
+                    type="video/mp4"> -->
+              <source src="static/images/fgp_beta_20.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" id="overview_video">FGP &beta; = 30</h2>
+          <div class="columns is-centered has-text-centered">
+            <h2>Video is 1x real-time</b>.
+            </h2>
+          </div>
+          <div class="publication-video">
+            <!-- <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+            <video id="teaser" controls width="100%">
+              <!-- <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/teaser.mp4"
+                    type="video/mp4"> -->
+              <source src="static/images/fgp_beta_30.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" id="overview_video">FGP &beta; = 40, 186 CS Run</h2>
+          <div class="columns is-centered has-text-centered">
+            <h2>Video is 5x real-time</b>.
+            </h2>
+          </div>
+          <div class="publication-video">
+            <!-- <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+            <video id="teaser" controls width="100%">
+              <!-- <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/teaser.mp4"
+                    type="video/mp4"> -->
+              <source src="static/images/fgp_beta_40_5x.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" id="overview_video">FGP &beta; = 50</h2>
+          <div class="columns is-centered has-text-centered">
+            <h2>Video is 1x real-time</b>.
+            </h2>
+          </div>
+          <div class="publication-video">
+            <!-- <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+            <video id="teaser" controls width="100%">
+              <!-- <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/teaser.mp4"
+                    type="video/mp4"> -->
+              <source src="static/images/fgp_beta_50.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      
+      <!--/ Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" id="overview_video">DeXtreme (new)</h2>
+          <div class="columns is-centered has-text-centered">
+            <h2>Video is 1x real-time</b>.
+            </h2>
+          </div>
+          <div class="publication-video">
+            <video id="dextreme" controls width="100%">
+              <source src="static/images/dextreme.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <!--/ Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" id="overview_video">DeXtreme (new) 670 CS Run</h2>
+          <div class="columns is-centered has-text-centered">
+            <h2>Video is 5x real-time</b>.
+            </h2>
+          </div>
+          <div class="publication-video">
+            <video id="dextreme" controls width="100%">
+              <source src="static/images/dextreme_5x_comp.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              Template from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
